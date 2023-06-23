@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 
 const Hooks = () => {
-  const [show, setShow] = useState(true);
+  const previousCountRef = useRef(0);
+  let count = 0;
+  function incrementCount() {
+    count++;
+    previousCountRef.current = count;
+    console.log("Current count:", count);
+    console.log("Previous count:", previousCountRef.current);
+  }
   return (
     <div>
-      {show ? <h1>hello world</h1> : "nothing"}
-      <button onClick={() => setShow(!show)}>click</button>
+      {" "}
+      <button onClick={incrementCount}>Increment</button>
     </div>
   );
 };
